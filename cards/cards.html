@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<style>
+    body
+    {
+        background-color: darkgreen;
+    }
+    h1
+    {
+      font-size: xx-large;
+      font-style: oblique;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    p{
+        text-align: center;
+        font-size: x-large;
+    }
+    button
+    {
+        margin-left: 650px;
+        padding: 10px;
+        background-color: darkgoldenrod;
+    }
+    button:hover
+    {
+        border: 2px solid red;
+    }
+</style>
+<body>
+    <h1>cards</h1>
+    <h2 id="nun">hello</h2>
+    <p id="cross">cards:</p>
+    <p id="son">draw:</p>
+    <button onclick="result()">start game</button>
+    <button onclick="game()">new game</button>
+</body>
+<script>
+    let first=getrandom()
+    let second=getrandom()
+    let run =document.getElementById("nun")
+    let mom =document.getElementById("son")
+    let cards =document.getElementById("cross")
+    let message=""
+    let value= first + second
+    let cardss = []
+    function getrandom()
+    {
+      let randomnumber= Math.floor(Math.random()*13) + 1
+      if (randomnumber>10)
+      {
+        return 10
+      }
+      else if(randomnumber===1)
+      {
+        return 11
+      }
+      else 
+      {
+        return randomnumber
+      }
+    console.log(randomnumber)
+    }
+    function result()
+    {
+        let first=getrandom()
+        let second=getrandom()
+        cardss=[first,second]
+     render()
+    }
+ function render()
+ {
+    if (value<21){
+        message="you won"
+    }
+    else if(value===21){
+        message="try another time"
+    }
+    else {
+        message="you lost"
+    }
+    run.innerText=message
+    mom.innerText="sum:" + value
+    cards.textContent= "cards:"
+    for(let i=0;i<cardss.length;i+=1)
+    {
+    cards.textContent+= cardss[i] + " "
+    }
+ }
+ function game()
+ {
+    let card=getrandom()
+    value+=card
+    cardss.push(card)
+    render()
+ }
+</script>
